@@ -3,6 +3,10 @@ import cv2
 import sys
 
 def images_to_video(image_dir, output_path, fps=15, ext='.jpg'):
+    output_dir = os.path.dirname(output_path)
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir, exist_ok=True)
+
     # 1) 폴더 내 이미지 파일 목록 정렬
     imgs = sorted([f for f in os.listdir(image_dir) if f.endswith(ext)])
     if not imgs:
@@ -29,5 +33,5 @@ def make_video(BASE="data"):
     for seq in SEQS[:1]:
     # seq = SEQS[0]
         img_dir = os.path.join(BASE, seq)
-        out_file = os.path.join(BASE, f"{seq}.mp4")
+        out_file = os.path.join(BASE, "video", f"{seq}.mp4")
         images_to_video(img_dir, out_file, fps=15, ext='.jpg')
