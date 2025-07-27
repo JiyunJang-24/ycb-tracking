@@ -1,4 +1,4 @@
 data/
-co-tracker/checkpoints/*.pt
+**/checkpoints/*
 models/
 *.zip
