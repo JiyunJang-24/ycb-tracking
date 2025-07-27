@@ -1,5 +1,6 @@
 import os
 import cv2
+import sys
 
 def images_to_video(image_dir, output_path, fps=15, ext='.jpg'):
     # 1) 폴더 내 이미지 파일 목록 정렬
@@ -12,7 +13,7 @@ def images_to_video(image_dir, output_path, fps=15, ext='.jpg'):
     h, w = first.shape[:2]
 
     # 3) VideoWriter 초기화 (H.264 인코딩)
-    fourcc = cv2.VideoWriter_fourcc(*'avc1')
+    fourcc = cv2.VideoWriter_fourcc(*'mp4v')
     writer = cv2.VideoWriter(output_path, fourcc, fps, (w, h))
 
     # 4) 이미지 순서대로 쓰기
@@ -22,11 +23,10 @@ def images_to_video(image_dir, output_path, fps=15, ext='.jpg'):
     writer.release()
     print(f"Saved video: {output_path}")
 
-if __name__ == "__main__":
-    BASE = "/home/fick17/Desktop/JY/ycb/data"
+def make_video(BASE="data"):
     SEQS = sorted([d for d in os.listdir(BASE) if os.path.isdir(os.path.join(BASE, d))])
     # 예: 0001 시퀀스만 동영상으로 만들려면 리스트를 ['0001'] 로 바꾸세요.
-    for seq in SEQS:
+    for seq in SEQS[:1]:
     # seq = SEQS[0]
         img_dir = os.path.join(BASE, seq)
         out_file = os.path.join(BASE, f"{seq}.mp4")
