@@ -1,8 +1,4 @@
-
-sam2/checkpoints/*.pt
-
 data/
 co-tracker/checkpoints/*.pt
 models/
 *.zip
-sam2/
